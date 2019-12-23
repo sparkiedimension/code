@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long int
+#define md 1000000007
+#define pb push_back
+int n;
+vector<int>vis;
+string orgn;
+int cnt=0;
+void fn(string s,int i)
+{
+	if(s.length()==n) {
+		cout<<s<<endl;
+		cnt++;
+		return ;
+	}
+	int j=0;
+	while(j<n)
+	{
+		int ij=(i+j)%n;
+		if(vis[ij]==0)
+		{
+			vis[ij]=1;
+			fn(s+orgn[ij],ij+1);
+			vis[ij]=0;
+		}
+		j++;
+	}
+}
+
+
+int solve()
+{
+	cin>>orgn;
+	n=orgn.length();
+	vis.resize(n,0);
+	fn("",0);
+	cout<<endl<<cnt<<endl;
+
+   	return 0;
+}
+int main()
+{
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt","r",stdin);
+	//freopen("output.txt","w",stdout);
+	#endif
+
+	ll t=1;
+	//cin>>t;
+	while(t--)
+		solve();
+}
